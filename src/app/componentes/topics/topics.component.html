@@ -1,0 +1,80 @@
+<!-- que se muestre esto si no hay o aun no hay topics-->
+<div class="col-md-12 mt-3" *ngIf="!topics">
+    <div class="d-flex align-items-center">
+        <strong>Cargando...</strong>
+        <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+    </div>
+</div>
+
+<!-- si hay topics que los mueste :D -->
+<div class="col-md-12 mt-3" *ngIf="topics">
+    <h1>{{page_title}}</h1>
+    <hr>
+
+    <ul class="list-group">
+        <!-- el for of de toda la vida, topic hace referencia a nuestro los elementos de la lista topics -->
+        <li class="list-group-item" *ngFor="let topic of topics">
+            <h4><a style="text-decoration: none;" href="" [routerLink]="['/tema', topic._id]">{{topic.title}}</a></h4>
+
+            <!--en el objeto topic esta tambien su objeto user-->
+            <span class="badge text-dark">{{topic.user.name + ' ' + topic.user.surname}}</span>
+
+            <!-- tambien q nos muestre la fecha y con formato de moment :D, en español y amtimeago hace cuanto se creo -->
+            <span class="badge ms-2 text-dark">{{topic.date | amLocale: 'es' | amTimeAgo}}</span>
+            <a href="" [routerLink]="['/tema', topic._id]" class="btn btn-sm btn-success float-end mx-auto d-block">Leer</a>
+        </li>
+    </ul>
+
+    <div class="clearfix"></div>
+
+    <!-- navegacion de paginacion -->
+    <nav aria-label=" navigation " class="mt-4 d-flex justify-content-center " *ngIf="load">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" [routerLink]="['/temas',prev_page]">&laquo; Anterior</a>
+            </li>
+            <!--for of q recorre toda nuestra lista number_pages-->
+            <li class="page-item" *ngFor="let num of number_pages">
+                <!--paqpuedaredirigir ala pages-->
+                <a class="page-link" href="#" [routerLink]="['/temas/',num]">{{num}}</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" [routerLink]="['/temas',next_page]">Siguiente &raquo;</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!--Navegacion de Paginacion, probar-->
+    <!-- <ul class="pagination mt-4"> -->
+    <!--Navegacion pagina anterior-->
+    <!-- <ng-container *ngIf="prev_page >= 1">
+            <li class="page-item"><a class="page-link" [routerLink]="['/temas',prev_page]">&laquo;Previous</a></li>
+        </ng-container>
+        <ng-container *ngIf="prev_page < 1">
+            <li class="page-item disabled"><a class="page-link" [routerLink]="['/temas',prev_page]">&laquo;Previous</a>
+            </li>
+        </ng-container>
+        <ng-container *ngFor="let number_page of number_pages"> -->
+    <!--Colocar pagina activa actualmente-->
+    <!-- <ng-container *ngIf="number_page == page">
+                <li class="page-item active">
+                    <a class="page-link" [routerLink]="['/temas',number_page]">{{number_page}}</a>
+                </li>
+            </ng-container> -->
+    <!--Colocar pagina no activa actualmente-->
+    <!-- <ng-container *ngIf="number_page != page">
+                <li class="page-item">
+                    <a class="page-link" [routerLink]="['/temas',number_page]">{{number_page}}</a>
+                </li>
+            </ng-container>
+        </ng-container> -->
+    <!--Navegacion pagina siguiente-->
+    <!-- <ng-container *ngIf="number_pages.length >= next_page">
+            <li class="page-item"><a class="page-link" [routerLink]="['/temas',next_page]">Next&raquo;</a></li>
+        </ng-container>
+        <ng-container *ngIf="number_pages.length < next_page">
+            <li class="page-item disabled"><a class="page-link" [routerLink]="['/temas',next_page]">Next&raquo;</a></li>
+        </ng-container>
+    </ul> -->
+
+</div>

@@ -1,0 +1,171 @@
+<!-- el navbar q se mostrara en todos -->
+<nav class="navbar navbar-expand-lg navbar-light bg-dark shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light " routerLink="/home">
+            <img src="assets/images/blog_transp.png" alt="" width="30" height="26" class="d-inline-block align-text-center"> AN FORO
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon icon-white"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto mb-lg-0">
+                <li class="nav-item ">
+                    <a class="nav-link text-light" routerLink="/home" href="#">Inicio</a>
+                </li>
+                <!--ciclo for de angular *ngFor, osease recorre todas las categorias creando una variable 'categoria' | routerlink es para ir a la ruta tal-->
+                <!-- <li class="nav-item" *ngFor="let categoria of categories"> version antigua
+                    <a class="nav-link text-light" href="#">{{categoria.name}}</a>
+                </li> -->
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categorias
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
+                <!-- <a *ngFor="let categoria of categories" [routerLink]="['/categoriaa', categoria.id]" class="dropdown-item" href="#">{{categoria.name}}</a> -->
+                <!-- [routerLink]="['/categoriaa', categoria.name]" con esto podemos ir alas paginas dependiendo la categoria :D -->
+                <!-- </div>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link text-light" routerLink="/temas" href="#">Temas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" routerLink="/panel/crear" href="#">Crear temas</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link text-light" routerLink="/" href="#">&nbsp;</a> -->
+                <!--&nbsp; esta cosa simplemente es un espacio a lado-->
+                <!-- </li> -->
+                <li class="nav-item">
+                    <a class="nav-link text-light" routerLink="/usuarios" href="#">Compañeros</a>
+                </li>
+
+                <li class="nav-item">
+                    <form action="" class="form-inline my-2 my-lg-0 d-flex" style="width: 50;" #searchForm="ngForm">
+                        <!-- [(ngModel)] es un chui data binding, le damos un nombre al input #search y lo asignamos a ngmodel a la variable search-->
+                        <input type="search" class="form-control me-sm-2" placeholder="Buscar..." aria-label="Search" name="busqueda" #busqueda="ngModel" [(ngModel)]="search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="goSearch()">Buscar</button>
+                    </form>
+                </li>
+            </ul>
+            <ul class="navbar-nav navbar-right" *ngIf="identity && identity.name; else isLoggedOut">
+                <!--osease si no existe identity, entonces que muestre isLoggedOut, esta puesto mas abajo-->
+            </ul>
+            <ul class="navbar-nav navbar-right" *ngIf="identity && identity.name">
+                <!--*ngIf=""-->
+                <!--*ngIf directiva condicional para validar si hay esos datos, va a mostar este nav-->
+                <!--right lo va a poner a la derecha-->
+                <li *ngIf="identity" class="nav-item">
+                    <div class="avatar-mask">
+                        <!-- ocupa ruta del bakend , si hay image que lo muestre-->
+                        <img src="{{url + 'avatar/' + identity.image}}" alt="" class="avatar_nav" *ngIf="identity.image">
+                        <!-- si no tiene img que muestre esta por defecto -->
+                        <img src="/assets/images/user.png" alt="" *ngIf="!identity.image">
+                    </div>
+
+                    <!--pa mostrar la img | identity.image el name de la img- | ngIf identity pa que muestre imagen si es que hay un identity -->
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{identity.name + ' ' +  identity.surname}} <!-- = interpolacionNombre Apellido-->
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" routerLink="/panel">Panel de usuario</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <!-- [routerLink]="['/perfil', identity.id]  para que nos lleve al perfil con id del user identificado q esta en identity del localstorage donde lo guardamos -->
+                        <li><a class="dropdown-item" [routerLink]="['/perfil', identity._id]">Mi perfil</a></li>
+                        <li><a class="dropdown-item" routerLink="/ajustes">Ajustes</a></li>
+                        <li><a class="dropdown-item pointer" (click)="logout()">Salir</a></li>
+                    </ul>
+                    <!--routerLink para poner nuestra ruta an angular xd-->
+                </li>
+            </ul>
+
+            <!-- pa q muestre los botones si es que no hay login -->
+            <ng-template #isLoggedOut>
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" routerLink="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" routerLink="/register">Registro</a>
+                    </li>
+                </ul>
+            </ng-template>
+        </div>
+    </div>
+</nav>
+<div class="container-xl" [ngStyle]="{'background':'assets/images/fondo1.jpg'}">
+    <!-- <h1 class="text-center">Panel de control</h1> -->
+    <router-outlet></router-outlet>
+    <!-- router-outlet espacio donde se va a mostrar lo que tienen los componentes ejemp. de login: http://localhost:4200/login || 
+        ve de la configuracion de rutas  y ver q rutas tengo en el navegador puesta y en base a esa ruta tomar el conponente asociado 
+        a esa ruta y cargarlo dentro de esta etiqueta-->
+    <!-- esto funcion gracias a importar routing, appRoutingProviders en app.module.ts -->
+
+
+    <!-- contenido -->
+    <!-- <app-login></app-login>
+    <app-register></app-register> ya no usadas pk usamos router-outlet-->
+</div>
+
+
+
+<!-- el footer :D -->
+<footer class="footer bg-dark mt-5 pt-4 pb-2 text-white">
+    <div class="container-xl">
+        <div class="d-flex align-items-center border-bottom pb-3">
+            <p class="m-0 me-4 fw-bold"> Meeti</p>
+
+            <a href="#" class="btn btn-dark bg-outline-dark border">Primeros pasos</a>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <p class="fs-5">Tu cuenta</p>
+                <nav class="nav flex-column text-white">
+                    <a href="#" class="nav-link">Registrarse</a>
+                    <a href="#" class="nav-link">Iniciar Sesion</a>
+                    <a href="#" class="nav-link">Ayuda</a>
+                    <a href="#" class="nav-link">Soporte</a>
+                </nav>
+            </div>
+
+            <div class="col-md-4">
+                <p class="fs-5">Descubrir</p>
+                <nav class="nav flex-column">
+                    <a href="#" class="nav-link">Grupos</a>
+                    <a href="#" class="nav-link">Calendario</a>
+                    <a href="#" class="nav-link">Temas</a>
+                    <a href="#" class="nav-link">Ciudades</a>
+                    <a href="#" class="nav-link">Eventos en Linea</a>
+                    <a href="#" class="nav-link">Guias Locales</a>
+                </nav>
+            </div>
+
+            <div class="col-md-4">
+                <p class="fs-5">Tu cuenta</p>
+                <nav class="nav flex-column">
+                    <a href="#" class="nav-link">Acerca de</a>
+                    <a href="#" class="nav-link">Blog</a>
+                    <a href="#" class="nav-link">Empleop</a>
+                    <a href="#" class="nav-link">Ayuda</a>
+                    <a href="#" class="nav-link">Aplicaciones</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column flex-md-row mt-4 align-items-center">
+            <p class="m-0 me-4 fs-4">Meeti</p>
+            <nav class="nav flex-column flex-md-row">
+                <!--nav tiene d-flex-->
+                <a href="#" class="nav-link me-md-2">Acerca de</a>
+                <a href="#" class="nav-link me-md-2">Blog</a>
+                <a href="#" class="nav-link me-md-2">Empleo</a>
+                <a href="#" class="nav-link me-md-2">Ayuda</a>
+                <a href="#" class="nav-link me-md-2">Aplicaciones</a>
+            </nav>
+        </div>
+
+    </div>
+</footer>

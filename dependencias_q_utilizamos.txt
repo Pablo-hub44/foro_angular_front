@@ -1,0 +1,6 @@
+1. de nowzoo ngx-highliht-js
+2. angular-file-uploader, para la sudida de archivos
+3. angular2-moment, para darle formato a las fechas
+4. bootstrap, para el diseño
+5. jquery aunque no es necesario ya que bootstrap 5 ya no ocupa jquery
+6. @types/jquery  para mejorar la compatibilidad con angular

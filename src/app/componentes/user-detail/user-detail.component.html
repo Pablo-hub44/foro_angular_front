@@ -1,0 +1,35 @@
+<!-- que se muestre esto si no hay o aun no hay user o topics-->
+<div class="col-md-12 mt-3" *ngIf="!user || !topics">
+    <div class="d-flex align-items-center">
+        <strong>Cargando...</strong>
+        <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+    </div>
+</div>
+
+<!-- con validacion de que se muestre esto si hay un user y topics -->
+<div class="col-md-12 mt-3" *ngIf="user && topics">
+    <!-- imagen del user, si el user tiene img que lo muestre -->
+    <div class="avatar-mask_list float-start me-3" *ngIf="user.image">
+        <img src="{{url + 'avatar/' + user.image}}" alt="">
+    </div>
+    <h1>{{user.name + ' '+ user.surname}}</h1>
+    <hr>
+    <!-- si no tiene img que muestre esta por defecto -->
+    <div class="avatar-mask_list float-start me-3" *ngIf="!user.image">
+        <img src="/assets/images/user.png" alt="">
+    </div>
+    <ul class="list-group">
+        <!-- el for of de toda la vida, topic hace referencia a nuestro los elementos de la lista topics -->
+        <li class="list-group-item" *ngFor="let topic of topics">
+            <h4><a style="text-decoration: none;" href="" [routerLink]="['/tema', topic._id]">{{topic.title}}</a></h4>
+
+            <!-- tambien q nos muestre la fecha y con formato de moment :D, en español y amtimeago hace cuanto se creo -->
+            <span class="badge ms-2 text-dark">{{topic.date | amLocale: 'es' | amTimeAgo}}</span>
+            <a href="" [routerLink]="['/tema', topic._id]" class="btn btn-sm btn-success float-end mx-auto d-block">Leer</a>
+        </li>
+    </ul>
+
+    <div class="clearfix"></div>
+
+
+</div>

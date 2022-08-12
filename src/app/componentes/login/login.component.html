@@ -1,0 +1,39 @@
+<div class="row justify-content-center mt-3">
+    <div class="col-md-7">
+        <p>{{page_title}}</p>
+        <p>Identificate en el foro</p>
+        <hr>
+        <!-- mensajes de estatus -->
+        <div class="alert alert-success mt-3" *ngIf="status == 'success'">
+            <!--ngif, validador de angular , si esto se cumple mostrara tal cosa-->
+            Te has identificado correctamente
+        </div>
+        <div class="alert alert-danger mt-3" *ngIf="status == 'error'">
+            No te has podido identificar, usuario no encontrado
+        </div>
+
+        <form action="" class="ms-0 ps-0" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <!--(ngSubmit) es para poder enviar los datos-->
+
+            <div class="mb-3 form-group">
+                <!-- for le ponemos el name q hace referencia label -->
+                <label for="email" class="form-label">Correo electronico: </label>
+                <input type="email" name="email" class="form-control" placeholder="Escribe tu nombre" #email="ngModel" [(ngModel)]="user.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <!-- #name="ngModel" [(ngModel)]="user.name" con esto recepcionamos los datos, le damos un #nombre y lo metemos al ngModel de nuestro objeto(en su propiedad) q se va a modificar, del modelo -->
+                <!--en los inputs, otra forma mas facil formControlName="name" pa recepcionar en el typeScript-->
+                <!-- *ngIf validar con angular las vistas :O-->
+                <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">El email no es valido</small>
+            </div>
+
+            <div class="mb-3 form-group">
+                <label for="password" class="form-label">Contraseña: </label>
+                <input type="password" name="password" class="form-control" placeholder="Escribe tu nombre" #password="ngModel" [(ngModel)]="user.password" required>
+
+                <small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">La contraseña no es valida</small>
+            </div>
+
+            <input type="submit" value="Ingresar" class="btn btn-success" [disabled]="loginForm.invalid">
+            <!-- disabled = loginForm.invalid, que si el formulario no se responde de forma correcta el boton estara deshabilitado -->
+        </form>
+    </div>
+</div>

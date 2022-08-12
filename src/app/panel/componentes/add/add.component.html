@@ -1,0 +1,52 @@
+<p>{{page_title}}</p>
+<hr>
+<!-- mensajes de estatus -->
+<div class="alert alert-success mt-3" *ngIf="status == 'success'">
+    <!--ngif, validador de angular , si esto se cumple mostrara tal cosa-->
+    El tema se ga creado correctamente.
+</div>
+<div class="alert alert-danger mt-3" *ngIf="status == 'error'">
+    El tema no se ha podido crear.
+</div>
+<form action="" #addTopic="ngForm" (ngSubmit)="onSubmit(addTopic)">
+    <!--(ngSubmit) es para poder enviar los datos, addTopic como se llemara el form-->
+    <div class="mb-3 form-group">
+        <!-- for le ponemos el name q hace referencia label -->
+        <label for="title" class="form-label">Titulo: </label>
+        <input type="text" name="title" class="form-control" placeholder="Escribe tu nombre" #title="ngModel" [(ngModel)]="topic.title" required>
+        <!-- #title="ngModel" [(ngModel)]="user.title" con esto recepcionamos los datos, le damos un #nombre y lo metemos al ngModel de nuestro objeto(en su propiedad) q se va a modificar, del modelo -->
+        <!--en los inputs, otra forma mas facil formControlName="name" pa recepcionar en el typeScript-->
+        <!-- *ngIf validar con angular las vistas :O-->
+        <small *ngIf="!title.valid && title.touched" class="invalid-feedback d-block">El nombre no es valido</small>
+    </div>
+
+
+    <div class="mb-3 form-group">
+        <!-- for le ponemos el name q hace referencia label -->
+        <label for="language" class="form-label">Lenguaje: </label>
+        <input type="text" name="language" class="form-control" placeholder="Escribe tu nombre" #language="ngModel" [(ngModel)]="topic.language" required>
+        <!-- *ngIf validar con angular las vistas :O-->
+        <small *ngIf="!language.valid && language.touched" class="invalid-feedback d-block">El lenguaje no es valido</small>
+    </div>
+
+    <div class="mb-3 form-group">
+        <!-- for le ponemos el name q hace referencia label -->
+        <label for="content" class="form-label">Pon tu pregunta o Contenido: </label>
+        <textarea type="text" name="content" class="form-control" placeholder="Escribe tu nombre" #content="ngModel" [(ngModel)]="topic.content" required></textarea>
+        <!-- *ngIf validar con angular las vistas :O-->
+        <small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">El contenido no es valido</small>
+    </div>
+
+    <div class="mb-3 form-group">
+        <!-- for le ponemos el name q hace referencia label -->
+        <label for="code" class="form-label">Pon tu codigo: </label>
+        <textarea type="text" name="code" class="form-control" placeholder="Escribe tu nombre" #code="ngModel" [(ngModel)]="topic.code"></textarea>
+        <!-- *ngIf validar con angular las vistas :O-->
+        <small *ngIf="!code.valid && code.touched" class="invalid-feedback d-block">El codigo no es valido</small>
+    </div>
+
+
+
+    <input type="submit" value="Guardar" class="btn btn-success" [disabled]="addTopic.invalid">
+    <!-- disabled = userEditForm.invalid, que si el formulario no se responde de forma correcta el boton estara deshabilitado -->
+</form>

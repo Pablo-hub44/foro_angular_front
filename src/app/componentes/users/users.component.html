@@ -1,0 +1,28 @@
+<div class="row justify-content-center">
+    <div class="col-md-9 mt-3 ">
+        <h1>{{page_title}}</h1>
+        <hr>
+
+        <ul class="list-group">
+            <!-- el for of de toda la vida, usuario hace referencia a nuestro los elementos de la lista users -->
+            <li class="list-group-users" style="list-style: none;" *ngFor="let usuario of users">
+                <!-- imagen del usuario, si el usuario tiene img que lo muestre -->
+                <div class="avatar-mask_list float-start me-3" *ngIf="usuario.image">
+                    <img src="{{url + 'avatar/' + usuario.image}}" alt="">
+                </div>
+                <!-- si no tiene img que muestre esta por defecto -->
+                <div class="avatar-mask_list float-start me-3" *ngIf="!usuario.image">
+                    <img src="/assets/images/user.png" alt="">
+                </div>
+                <h4><a style="text-decoration: none;" href="" [routerLink]="['/perfil', usuario._id]">{{usuario.name+ ' '+ usuario.surname}}</a></h4>
+
+                <!-- tambien q nos muestre la fecha y con formato de moment :D, en español y amtimeago hace cuanto se creo, los usuarios no tiene fecha -->
+                <!-- <span class="badge ms-2 text-dark">{{usuario.date | amLocale: 'es' | amTimeAgo}}</span> -->
+                <a href="" [routerLink]="['/perfil', usuario._id]" class="btn btn-sm btn-success float-end mx-auto d-block">Ver perfil</a>
+            </li>
+        </ul>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- color que quiero de fondo #F5F8FF -->

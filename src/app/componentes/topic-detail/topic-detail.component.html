@@ -1,0 +1,77 @@
+<div class="row mt-4 justify-content-center" *ngIf="topic">
+    <div class="col-md-9 topic-box">
+        <div class="topic-data">
+            <h1>{{topic.title}}</h1>
+
+            <!-- tenia badge pero no se ve bn -->
+            <span class="  text-dark" *ngIf="topic.language">{{topic.language}}</span>
+
+            <!--en el objeto topic esta tambien su objeto user-->
+            <p class="">{{topic.user.name + ' '+ topic.user.surname}}</p>
+
+            <!-- tambien q nos muestre la fecha y con formato de moment :D, en español y amtimeago hace cuanto se creo -->
+            <span class="  text-dark">{{topic.date | amLocale: 'es' | amTimeAgo}}</span>
+
+
+            <p class="mt-2" id="topic-content">
+                {{topic.content}}
+            </p>
+
+            <p id="topic-code" class="mt-2" *ngIf="topic.code">
+                <!-- con esto nos lo va a formatear al tipo de lenguaje q sea language :O -->
+                <ngx-highlight-js lang="{{topic.language | lowercase}}" url="" code="{{topic.code }}">
+                </ngx-highlight-js>
+            </p>
+
+            <!--  -->
+            <!-- <div class="clearfix"></div> -->
+
+            <div class="comment-box mt-4">
+                <h3>Comentarios</h3>
+                <hr>
+                <!-- mensajes de estatus -->
+                <div class="alert alert-success mt-3" *ngIf="status == 'success'">
+                    <!--ngif, validador de angular , si esto se cumple mostrara tal cosa-->
+                    El comentario se ha añadido correctamente
+                </div>
+                <div class="alert alert-danger mt-3" *ngIf="status == 'error'">
+                    el comentario no se ha añadido
+                </div>
+
+                <!-- nombre al formulario #formcomment y de tipo ngform y validamos si esta logueado (hay un identity.id). muestre este form -->
+                <form action="" class="mb-3" #formComment="ngForm" (ngSubmit)="onSubmit(formComment)" *ngIf="identity.id">
+                    <!--(ngSubmit) es para poder enviar los datos, formComment como se llemara el form-->
+                    <div class="mb-3 form-group">
+                        <!-- for le ponemos el name q hace referencia label -->
+                        <label for="content" class="form-label">Pon tu comentario: </label>
+                        <textarea type="text" name="content" class="form-control" placeholder="Escribe tu comentario" #content="ngModel" [(ngModel)]="comment.content" required></textarea>
+                        <!-- #content="ngModel" [(ngModel)]="comment.content" con esto recepcionamos los datos, le damos un #nombre y lo metemos al ngModel de nuestro objeto(en su propiedad) q se va a modificar, del modelo -->
+                        <!-- *ngIf validar con angular las vistas :O-->
+                        <small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">El contenido no es valido</small>
+                    </div>
+                    <input type="submit" value="Comentar" class="btn btn-success" [disabled]="formComment.invalid">
+                    <!-- [disabled]="formComment.invalid" pa que si el dato|el form es invalido el boton de comentar este dehabilitado -->
+                </form>
+
+                <ul class="list-group list-comments mb-2 mt-2">
+                    <!--ya sabemos un for of para que iteremos sobre toda la lista con comment de commentarios del topic -->
+                    <li class="list-group-item comment-item" *ngFor="let comment of topic.comments">
+                        <div class="avatar-mask float-start me-3">
+                            <img src="{{url + 'avatar/' + comment.user.image}}" alt="" class="avatar_nav">
+                        </div>
+                        <!--pa mostrar la img | identity.image el name de la img- | ngIf identity pa que muestre imagen si es que hay un identity -->
+                        <!--en el objeto topic esta tambien su objeto user-->
+                        <p class="d-inline ">{{comment.user.name + ' '+ comment.user.surname}}</p>
+
+                        <!-- tambien q nos muestre la fecha y con formato de moment :D, en español y amtimeago hace cuanto se creo -->
+                        <span class="fw-bold  text-dark float-end">{{comment.date | amLocale: 'es' | amTimeAgo}}</span>
+                        <p class="p-0 m-0">{{comment.content}}</p>
+                        <!-- boton de eliminar, con validacion de q el id del user actual sea igual al id del comentario, osea q sean sus comentarios-->
+                        <button href="" (click)="deleteComment(comment._id)" class="btn btn-sm btn-danger float-end" *ngIf="identity && identity._id == comment.user._id">Borrar</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

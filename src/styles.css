@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* para las img de la lista de usuarios */
+
+.avatar-mask_list {
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    /*overflow para moverlo en ejex y eje y */
+    overflow: hidden;
+    /*para que la imagen no se deforme*/
+    object-fit: cover;
+}
+.avatar-mask_list img {
+    height: 60px;
+}

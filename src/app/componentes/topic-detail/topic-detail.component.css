@@ -1,0 +1,12 @@
+.avatar-mask {
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: 5px;
+    margin-left: 0px;
+    /*overflow para moverlo en ejex y eje y */
+}
+.avatar_nav {
+    height: 40px;
+}
