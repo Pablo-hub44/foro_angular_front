@@ -1,9 +1,9 @@
-<div class="row justify-content-center mt-3">
+<!-- <div class="row justify-content-center mt-3">
     <div class="col-md-8">
         <div class="p-5 bg-light">
             <div class="container text-center">
                 <h1 class="display-3">{{page_title}}</h1>
-                <!--con {{}} mostramos nuestrapropiedad de .ts-->
+                con {{}} mostramos nuestrapropiedad de .ts
                 <p class="lead">Pon tus dudas, aprende y ayuda a tus compañeros desarrolladores</p>
                 <hr class="my-2">
                 <a class="btn btn-success btn-lg me-3 mb-1" href="" routerLink="/usuarios" role="button">Ver compañeros</a>
@@ -12,4 +12,152 @@
             </div>
         </div>
     </div>
+</div> antes :)-->
+
+
+<div class="container mt-5">
+    <!-- Header Section -->
+    <div class="text-center mb-5">
+        <h1 class="display-3">{{page_title}}</h1>
+        <p class="lead">Bienvenido a tu comunidad de desarrolladores. Aprende, comparte y colabora.</p>
+        <hr class="my-4">
+        <a class="btn btn-success btn-lg me-2" routerLink="/usuarios" role="button">Ver compañeros</a>
+        <a class="btn btn-primary btn-lg me-2" routerLink="/temas" role="button">Ver temas</a>
+        <a class="btn btn-warning btn-lg me-2" routerLink="/panel/crear" role="button">Añade un nuevo tema</a>
+    </div>
+
+    <!-- Featured Topics Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center">Temas Destacados</h2>
+            <div class="card-deck">
+                <!-- Card 1 -->
+                <div class="card">
+                    <img src="ruta/a/imagen1.jpg" class="card-img-top" alt="Imagen del tema 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Tecnologia</h5>
+                        <p class="card-text">Descripción breve del tema 1.</p>
+                        <a href="#" routerLink="/tema/1" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="card">
+                    <img src="ruta/a/imagen2.jpg" class="card-img-top" alt="Imagen del tema 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Ciberseguridad</h5>
+                        <p class="card-text">Descripción breve del tema 2.</p>
+                        <a href="#" routerLink="/tema/2" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="card">
+                    <img src="ruta/a/imagen3.jpg" class="card-img-top" alt="Imagen del tema 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Protege tus equipos de computos</h5>
+                        <p class="card-text">Descripción breve del tema 3.</p>
+                        <a href="#" routerLink="/tema/3" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center">Actividad Reciente</h2>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Usuario1</strong> comentó en <a href="#" routerLink="/tema/1">Tema 1</a> hace 10 minutos
+                </li>
+                <li class="list-group-item">
+                    <strong>Usuario2</strong> inició el tema <a href="#" routerLink="/tema/2">Tema 2</a> hace 20 minutos
+                </li>
+                <li class="list-group-item">
+                    <strong>Usuario3</strong> respondió en <a href="#" routerLink="/tema/3">Tema 3</a> hace 30 minutos
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Popular Users Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center">Usuarios Populares</h2>
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <img src="ruta/a/imagen-usuario1.jpg" class="rounded-circle" alt="Usuario 1" width="100">
+                    <h5>Usuario 1</h5>
+                    <p>Especialista en Backend</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <img src="ruta/a/imagen-usuario2.jpg" class="rounded-circle" alt="Usuario 2" width="100">
+                    <h5>Usuario 2</h5>
+                    <p>Frontend Developer</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <img src="ruta/a/imagen-usuario3.jpg" class="rounded-circle" alt="Usuario 3" width="100">
+                    <h5>Usuario 3</h5>
+                    <p>DevOps Engineer</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <img src="ruta/a/imagen-usuario4.jpg" class="rounded-circle" alt="Usuario 4" width="100">
+                    <h5>Usuario 4</h5>
+                    <p>Data Scientist</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest Articles Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center">Últimos Artículos</h2>
+            <div class="card-deck">
+                <!-- Article 1 -->
+                <div class="card">
+                    <img src="ruta/a/articulo1.jpg" class="card-img-top" alt="Artículo 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Artículo 1</h5>
+                        <p class="card-text">Descripción breve del artículo 1.</p>
+                        <a href="#" routerLink="/articulo/1" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+                <!-- Article 2 -->
+                <div class="card">
+                    <img src="ruta/a/articulo2.jpg" class="card-img-top" alt="Artículo 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Artículo 2</h5>
+                        <p class="card-text">Descripción breve del artículo 2.</p>
+                        <a href="#" routerLink="/articulo/2" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+                <!-- Article 3 -->
+                <div class="card">
+                    <img src="ruta/a/articulo3.jpg" class="card-img-top" alt="Artículo 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Artículo 3</h5>
+                        <p class="card-text">Descripción breve del artículo 3.</p>
+                        <a href="#" routerLink="/articulo/3" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h2>Suscríbete a nuestro boletín</h2>
+            <p>Recibe las últimas noticias, tutoriales y actualizaciones directamente en tu correo.</p>
+            <form>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Introduce tu correo electrónico" aria-label="Email">
+                    <button class="btn btn-outline-secondary" type="submit">Suscribirse</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
 </div>

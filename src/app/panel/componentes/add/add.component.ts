@@ -15,7 +15,7 @@ import { TopicService } from 'src/app/servicio/topic.service'; //el servicio del
 export class AddComponent implements OnInit {
   // propiedades
   public page_title: string;
-  public topic: Topic;
+  public topic: Topic; //objeto
   public identity: any;
   public token: any;
   public status: string;
